@@ -1,4 +1,5 @@
 <template>
+
     <div class="main bg-slate-900 flex justify-center items-center mx-auto">
       <h2
         class="flex text-white justify-center items-center mx-auto text-lg relative z-10 top-0 p-2 m-2"
@@ -343,3 +344,5 @@ instructions:
     height: 30px;
   }
   </style>
+
+
