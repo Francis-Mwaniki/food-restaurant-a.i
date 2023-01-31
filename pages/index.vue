@@ -160,7 +160,7 @@ import { ref, computed, onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import bott from "../assets/img/bot.svg";
 import user_bot from "../assets/img/user.svg";
-import loadingIcon from "@/assets/img/loading.svg";
+
 export default {
   setup() {
     const prompt = ref("");
@@ -268,7 +268,6 @@ export default {
 
     return {
       prompt,
-      loadingIcon,
       messages,
       refresh,
       isSaving,
