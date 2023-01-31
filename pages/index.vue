@@ -4,13 +4,8 @@
     v-show="isSaving"
     class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-900 opacity-75 flex flex-col items-center justify-center"
   >
-    <div
-      class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4"
-    ></div>
-
-    <p class="sm:w-1/3 w-2/3 text-center dark:text-pink-300 text-indigo-100">....</p>
     <h2 class="text-center dark:text-pink-300 text-indigo-100 text-xl font-semibold">
-      <img src="../assets/img/ball.gif" class="bg-slate-900" alt="" />
+      <img src="../assets/img/ring.gif" class="bg-slate-900 w-20 h-20" alt="" />
     </h2>
     <p class="sm:w-1/3 w-2/3 text-center text-white text-2xl">Saving.....</p>
     <ClientOnly>
@@ -23,6 +18,27 @@
       </button>
     </ClientOnly>
   </div>
+  <!-- loading -->
+  <div
+    wire:load
+    v-show="load"
+    class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-900 opacity-75 flex flex-col items-center justify-center"
+  >
+    <h2 class="text-center dark:text-pink-300 text-indigo-100 text-xl font-semibold">
+      <img src="../assets/img/ring.gif" class="bg-slate-900 h-20 w-20" alt="" />
+    </h2>
+    <p class="sm:w-1/3 w-2/3 text-center text-white text-2xl">submitting.....</p>
+    <ClientOnly>
+      <button
+        class="btn-3 ring-1 ring-white hover:bg-slate-800 bg-gray-900 rounded-lg"
+        @click="load = false"
+      >
+        Cancel
+        <Icon name="ic:outline-cancel" />
+      </button>
+    </ClientOnly>
+  </div>
+  <!-- end of loading -->
   <div class="main bg-slate-900 flex justify-center items-center mx-auto">
     <h2
       class="flex text-white justify-center items-center mx-auto text-lg relative z-10 top-0 p-2 m-2"
@@ -34,6 +50,7 @@
       perfect, but it's a fun way to play around with the API Use it to generate Recipes.
     </strong>
     <label for="my-modal-3" class="btn bg-slate-800">Example with ingredients</label>
+    <NuxtLink to="/Recipes" class="bg-slate-800 btn">Commands</NuxtLink>
     <div class="text-white">
       <input type="checkbox" id="my-modal-3" class="modal-toggle" />
       <div class="modal">
@@ -103,7 +120,7 @@
               <div class="mx-auto">
                 <span>{{ message.text }}</span>
                 <button
-                  class="btn-3 ring-1 ring-white hover:bg-slate-800 bg-gray-900 float-right"
+                  class="btn-3 ring-1 ring-slate-800 bg-slate-800 hover:bg-gray-900 float-right"
                   v-show="message.isAi"
                   @click="save(message.index)"
                 >
@@ -167,9 +184,14 @@ export default {
     const messages = ref([]);
     const loadingIndicator = ref("");
     let index = ref(0);
+    const user = useSupabaseUser();
     let isSaving = ref(false);
     let loadInterval = null;
+    let all_instructions = ref([]);
+    let newInstructions = ref("");
+    const client = useSupabaseClient();
     let botsvg = bott;
+    let filteredData = ref([]);
     let usersvg = user_bot;
     const bot = computed(() => {
       return botsvg;
@@ -180,7 +202,6 @@ export default {
     const load = ref(false);
 
     function handleSubmit() {
-      isSaving.value = true;
       messages.value.push({
         isAi: false,
         text: prompt.value,
@@ -232,11 +253,8 @@ export default {
           alert(err);
         });
       prompt.value = "";
-      setTimeout(() => {
-        isSaving.value = false;
-      }, 4000);
     }
-    function save(i) {
+    async function save(i) {
       if (messages.value === "") {
         alert("sorry cant save empty message");
       }
@@ -244,11 +262,20 @@ export default {
         /* console.log(messages.value.filter((message) => message.isAi)); */
       } else {
         isSaving.value = true;
-        console.log(
-          messages.value.filter((index) => {
-            return index.index === i;
-          })
-        );
+
+        filteredData.value = messages.value.filter((index) => {
+          return index.index === i;
+        });
+        if (filteredData.value.length === 0) {
+          return;
+        }
+        const { data, error } = await client.from("recipes").insert({
+          instructions: filteredData.value.map((message) => message.text),
+        });
+        if (error) throw Error;
+        else {
+          all_instructions.value.push(data);
+        }
 
         /*   console.log(messages.value.filter((message) => message.isAi)); */
         console.log(i);
@@ -268,6 +295,8 @@ export default {
 
     return {
       prompt,
+      filteredData,
+      all_instructions,
       messages,
       refresh,
       isSaving,
