@@ -1,4 +1,23 @@
 <template>
+     <div
+      wire:isFetching
+      v-show="isFetching"
+      class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden bg-gray-900 opacity-75 flex flex-col items-center justify-center"
+    >
+      <h2 class="text-center dark:text-pink-300 text-indigo-100 text-xl font-semibold">
+        <img src="../assets/img/ring.gif" class="bg-slate-900 w-20 h-20" alt="" />
+      </h2>
+      <p class="sm:w-1/3 w-2/3 text-center text-white text-2xl">it's Fetching.....</p>
+      <ClientOnly>
+        <button
+          class="btn-3 ring-1 ring-white hover:bg-slate-800 bg-gray-900 rounded-lg"
+          @click="isFetching = false"
+        >
+          Cancel
+          <Icon name="ic:outline-cancel" />
+        </button>
+      </ClientOnly>
+    </div>
   <div class="max-w-5xl mx-auto flex md:flex-row flex-col flex-wrap my-2 gap-y-2">
     <div class="" v-for="instruction in all_instructions[0]">
       <article class="rounded-xl bg-slate-800 p-6 sm:ring-1 ring-indigo-600 sm:p-8">
@@ -70,7 +89,9 @@ export default {
   setup() {
     const client = useSupabaseClient();
     const all_instructions = ref([]);
+    let isFetching = ref(false);
     const get_all = async () => {
+      isFetching.value = true;
       const { data, error } = await client.from("recipes").select("*");
       if (data) {
         all_instructions.value.push(data);
@@ -79,9 +100,13 @@ export default {
         alert("error in retrieving");
       }
     };
+    setTimeout(() => {
+            isFetching.value = false;
+          }, 4000);
     get_all();
     return {
       get_all,
+      isFetching,
       all_instructions,
     };
   },
@@ -94,4 +119,9 @@ export default {
 * {
   font-family: "Alegreya Sans", sans-serif;
 }
+ .btn-3 {
+    padding: 10px 30px;
+    color: white;
+  }
+  
 </style>
