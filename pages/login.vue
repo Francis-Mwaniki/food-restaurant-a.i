@@ -1,23 +1,22 @@
 <template>
     <div class="min-h-full flex flex-col justify-center  sm:px-6 lg:px-8">
-      <div class="sm:mx-auto sm:w-full sm:max-w-md">
+      <div class="sm:mx-auto sm:w-full">
        
         <h2 class="mt-6 text-center text-3xl font-extrabold text-orange-600">
           Sign in to your account
         </h2>
       </div>
   
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-8 px- shadow sm:rounded-lg sm:px-10">
-          <vee-form
+      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md max-w-sm mx-3">
+        <div class=" bg-slate-800 py-8 px- shadow sm:rounded-lg sm:px-10">
+          <form
             class="space-y-6"
             action="#"
             method="POST"
-            :validation-schema="loginSchema"
-            @submit="login"
+           
           >
             <div>
-              <label for="email" class="block text-lg font-bold text-gray-700">
+              <label for="email" class="block text-lg font-bold text-gray-300">
                 Email address
               </label>
               <div class="mt-1">
@@ -28,12 +27,13 @@
                   autocomplete="email"
                   class="appearance-none block w-full px-6 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-500" name="email" />
+              
+              
               </div>
             </div>
   
             <div>
-              <label for="password" class="block text-lg font-bold text-gray-700">
+              <label for="password" class="block text-lg font-bold text-gray-300">
                 Password
               </label>
               <div class="mt-1">
@@ -44,7 +44,7 @@
                   autocomplete="current-password"
                   class="appearance-none block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-500" name="password" />
+               
               </div>
             </div>
         
@@ -60,7 +60,7 @@
             <div>
               <button
                 type="submit"
-                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-orange-500 bg-black hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="w-full flex mr-3 sm:mx-auto justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-orange-500 bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 :class="[login_in_submission ? 'bg-gray-400 hover:bg-slate-400' : '']"
                 :disabled="login_in_submission"
               >
@@ -88,7 +88,7 @@
                 {{ login_show_alert ? "Logging..." : "Sign In" }}
               </button>
             </div>
-          </vee-form>
+          </form>
   
           <div class="mt-6">
             <div class="relative">
@@ -96,7 +96,7 @@
                 <div class="w-full border-t border-gray-300" />
               </div>
               <div class="relative flex justify-center text-sm">
-                <span class="px-2 text-lg bg-white text-black"> Don't have an account? </span>
+                <span class="px-2 text-lg bg-slate-800 text-white"> Don't have an account? </span>
               </div>
             </div>
   
@@ -111,12 +111,16 @@
         </div>
       </div>
     </div>
+    <BottomNav />
   </template>
   
   <script>
+  import BottomNav from "../components/BottomNav";
   export default {
     name: "LoginForm",
-  
+  components: {
+    BottomNav,
+  },
     data() {
       return {
         loginSchema: {

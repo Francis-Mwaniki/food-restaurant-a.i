@@ -2,17 +2,17 @@
 <main>
   <main>
     <!-- This example requires Tailwind CSS v2.0+ -->
-    <div class="relative overflow-hidden bg-white dark:bg-slate-900">
+    <div class="relative overflow-hidden bg-white ">
       <div class="mx-auto max-w-7xl">
         <div
-          class="relative z-10 bg-white dark:bg-slate-800 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32"
+          class="relative z-10 bg-white  pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32"
         >
          
 
           <div>
-            <div class="relative px-4 pt-6 sm:px-6 lg:px-8">
+            <div class="relative px-4 pt-6 sm:px-6 lg:px-8  md:bg-transparent bg-slate-900">
               <nav
-                class="relative flex items-center justify-between sm:h-10 lg:justify-start"
+                class="relative flex items-center justify-between sm:h-10 lg:justify-start  py-3"
                 aria-label="Global"
               >
                 <div class="flex flex-shrink-0 flex-grow items-center lg:flex-grow-0">
@@ -20,40 +20,55 @@
                     <a href="#">
                       <!-- https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600 -->
                     </a>
-                    <div class="-mr-2 flex items-center md:hidden">
+                    <div class="-mr-2 flex items-center md:hidden ">
                     
                     </div>
                   </div>
                 </div>
-                <div class=" md:block md:space-x-8 md:pr-4  ml-28">
+                <div class=" md:block md:space-x-8 md:pr-1 mx-auto flex flex-row flex-wrap justify-start items-start gap-x-3 Alegreya Sans font-family gap-y-3">
+                  <NuxtLink
+                    to="/"
+                    class="  md:text-black text-white hover:text-orange-600 font-family"
+                  >
+                    <span
+                      >
+                      <Icon name="uil:home-alt" class="w-6 h-6" />
+                      </span>
+                    Home
+                  </NuxtLink>
+                  <a
+                  target="_blank"
+                    href="https://github.com/Francis-Mwaniki/food-restaurant-a.i/graphs/contributors"
+                    class="  md:text-black text-white hover:text-orange-600"
+                  >
+                    <span
+                      >
+                      <Icon name="uil:github" class="w-6 h-6" />
+                      </span>
+                    collaborators
+                  </a>
+                 
+                  
+                  <Nuxt-link
+                    to="/chatbot"
+                    class="  md:text-black text-white hover:text-orange-600 font-family"
+                  >
+                    <span
+                      >
+                      <Icon name="fluent-emoji-high-contrast:robot" class="w-6 h-6" />
+                      </span>
+                   Chatbot
+                  </Nuxt-link>
+                  
                  
                   <Nuxt-link
-                    to="/login"
-                    class="font-bold  text-black hover:text-orange-600"
-                  >
+                  to="/login"
+                    class=" rounded-md border border-transparent md:h-14 bg-gradient-to-r from-slate-900 to-slate-900 px-4 md:py-3   text-orange-400 hover:bg-slate-700  font-family"
+                    >
                     <span
-                      ></span>
+                       class=" "> <Icon name="ic:round-login" class="w-6 h-6" /></span>
                     Log in
                   </Nuxt-link>
-                  
-                  <Nuxt-link
-                    to="/login"
-                    class="font-bold  text-black hover:text-orange-600"
-                  >
-                    <span
-                      ></span>
-                    Log in
-                  </Nuxt-link>
-                  
-                  <Nuxt-link
-                    to="/login"
-                    class="font-bold  text-black hover:text-orange-600"
-                  >
-                    <span
-                      ></span>
-                    Log in
-                  </Nuxt-link>
-                  
                 </div>
                  
               </nav>
@@ -77,9 +92,9 @@
           >
             <div class="sm:text-center lg:text-left">
               <h1
-                class="text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-300 sm:text-5xl md:text-6xl"
+                class="text-4xl  tracking-tight text-gray-900  sm:text-5xl md:text-6xl"
               >
-                <span class="block xl:inline">Discover magic receips</span>
+                <span class="block xl:inline  md:text-4xl text-2xl">Discover magic recipes <span class=" text-orange-600 text-5xl">.</span> </span>
                 <span class="block text-orange-600 xl:inline">
                <p class=""> Every meal every day!</p></span
                 >
@@ -87,15 +102,17 @@
               <p
                 class="mt-3 text-base text-gray-500 sm:mx-auto font-mono sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0"
               >
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.   Possimus, obcaecati. Quaerat odit dolore perferendis optio natus. Alias atque neque debitis amet perferendis a recusandae assumenda enim, ad, dicta rerum ipsa provident non!
+              AI-generated recipes can help save time, reduce food waste, and provide new and innovative recipe ideas by quickly matching ingredients to thousands of existing recipes.
               </p>
               <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div class="rounded-md shadow">
                   <Nuxt-link
-                    to="/"
-                    class="    ml-32 flex  items-center justify-center rounded-md border border-transparent h-14 bg-gradient-to-r from-slate-900 to-slate-900 px-4 py-3 text-base  font-bold text-orange-600 hover:bg-slate-700 md:py-3 md:px-10 md:text-2xl"
+                    to=""
+                    class=" flex  items-center justify-center rounded-md border border-transparent h-14 bg-gradient-to-r from-slate-900 to-slate-900 px-4 py-3 text-base   text-orange-400 hover:bg-slate-700 md:py-3 md:px-10 md:text-2xl"
                     >
-                    <button class=" ">Get started</button>
+                   
+                    <NuxtLink to="/login" class=" ">Get started</NuxtLink>
+                    <Icon name="ph:target" class=" h-6 w-6"/>
                   </Nuxt-link>
                 </div>
                
@@ -107,7 +124,7 @@
      
       <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
          <img
-          class="h-96  m-24 w-full object-cover sm:h-72 md:h-96  lg:h-full lg:w-full"
+          class="h-96  md:m-24 w-full object-cover sm:h-72 md:h-96  lg:h-full lg:w-full"
        src="https://cdn.pixabay.com/photo/2017/09/19/20/19/pizza-2766471_960_720.jpg"  
           alt=""
         /> 
@@ -134,33 +151,29 @@
       <div class="max-w-xl mb-6">
         <div>
           <p
-            class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 dark:text-white uppercase rounded-full bg-teal-accent-400"
+            class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900  uppercase rounded-full bg-teal-accent-400"
           >
             
           </p>
         </div>
         <h2
-          class="max-w-lg mb-2 font-sans text-4xl font-bold tracking-tight text-orange-600  sm:text-4xl sm:leading-none ml-10"
+          class="max-w-lg mb-2  text-lg md:text-4xl  tracking-tight text-orange-600  sm:text-4xl sm:leading-none ml-10"
         >
-        AI GENERATED RECEIPS.<br class="" />
+        AI GENERATED RECIPES.<br class="" />
 
-          <span class="inline-block text-deep-purple-accent-400 dark:text-gray-400"
+          <span class="inline-block text-deep-purple-accent-400 "
             ></span
           >
         </h2>
-        <p class="text-base text-gray-700 dark:text-gray-400 ml-10 md:text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente iste, 
-          impedit cum temporibus error, deserunt tempore voluptates amet accusamus,
-           harum culpa alias neque ex odit modi dicta ducimus. Labore, nulla!
-           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente iste, 
-          impedit cum temporibus error, deserunt tempore voluptates amet accusamus,
-           harum culpa alias neque ex odit modi dicta ducimus. Labore, nulla!
+        <p class="text-base text-gray-700  ml-10 md:text-lg">
+          Recipes are more than just instructions, they are a way to preserve cultural traditions, share personal experiences and bring people together around a shared love of food.
         </p>
       </div>
     </div>
   </div>
 </div>
 </main>
+<Foot/>
 
  
 </template>
@@ -191,5 +204,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@600&display=swap');
+font-family{
+  font-family: 'Rubik', sans-serif;};
+</style>
  

@@ -7,18 +7,17 @@
         </h2>
       </div>
   
-      <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-        <div class="bg-white py-8 px- shadow sm:rounded-lg sm:px-10">
-          <vee-form
+      <div class="mt-8 mx-5 max-w-sm sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-slate-800 py-8 px- shadow sm:rounded-lg sm:px-10">
+          <form
             class="space-y-6"
             action="#"
             method="POST"
-            :validation-schema="loginSchema"
-            @submit="login"
+           
           >
           <div class="w-full flex items-center justify-between space-x-4">
             <div class="w-1/2">
-              <label for="email" class="block text-lg font-bold text-gray-700">
+              <label for="email" class="block text-lg font-bold text-gray-300">
                 First Name
               </label>
               <div class="mt-1">
@@ -29,12 +28,12 @@
                   autocomplete="firstName"
                   class="appearance-none block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-600" name="firstName" />
+              
               </div>
             </div>
 
             <div class="w-1/2">
-              <label for="email" class="block text-lg font-bold text-gray-700">
+              <label for="email" class="block text-lg font-bold text-gray-300">
                 Last Name
               </label>
               <div class="mt-1">
@@ -45,12 +44,12 @@
                   autocomplete="lastName"
                   class="appearance-none block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-600" name="lastName" />
+            
               </div>
             </div>
           </div>
             <div>
-              <label for="email" class="block text-lg font-bold text-gray-700">
+              <label for="email" class="block text-lg font-bold text-gray-300">
                 Email address
               </label>
               <div class="mt-1">
@@ -61,12 +60,12 @@
                   autocomplete="email"
                   class="appearance-none block w-full px-6 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-500" name="email" />
+        
               </div>
             </div>
   
             <div>
-              <label for="password" class="block text-lg font-bold text-gray-700">
+              <label for="password" class="block text-lg font-bold text-gray-300">
                 Password
               </label>
               <div class="mt-1">
@@ -77,11 +76,11 @@
                   autocomplete="current-password"
                   class="appearance-none block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-500" name="password" />
+     
               </div>
             </div>
             <div>
-              <label for="password" class="block text-lg font-bold text-gray-700">
+              <label for="password" class="block text-lg font-bold text-gray-300">
                Confirm Password
               </label>
               <div class="mt-1">
@@ -92,7 +91,7 @@
                   autocomplete="current-password"
                   class="appearance-none block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 />
-                <ErrorMessage class="text-red-500" name="password" />
+         
               </div>
             </div>
   
@@ -107,7 +106,7 @@
             <div>
               <button
                 type="submit"
-                class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-orange-500 bg-black hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="w-full flex justify-center  px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-orange-500 bg-slate-900 py-3 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 :class="[login_in_submission ? 'bg-gray-400 hover:bg-slate-400' : '']"
                 :disabled="login_in_submission"
               >
@@ -135,7 +134,7 @@
                 {{ login_show_alert ? "Logging..." : "Sign In" }}
               </button>
             </div>
-          </vee-form>
+          </form>
   
           <div class="mt-6">
             <div class="relative">
@@ -143,7 +142,7 @@
                 <div class="w-full border-t border-gray-300" />
               </div>
               <div class="relative flex justify-center text-sm">
-                <span class="px-2 text-lg bg-white text-black"> Already a member </span>
+                <span class="px-2 text-lg bg-slate-800 text-white"> Already a member </span>
               </div>
             </div>
   
@@ -158,11 +157,16 @@
         </div>
       </div>
     </div>
+    <BottomNav />
   </template>
   
   <script>
+  import BottomNav from "~~/components/BottomNav.vue";
   export default {
     name: "LoginForm",
+    components: {
+      BottomNav,
+    },
   
     data() {
       return {

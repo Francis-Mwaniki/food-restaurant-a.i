@@ -166,19 +166,24 @@
         </div>
       </ClientOnly>
       <div
-        class="flex justify-center items-center mx-auto text-white md:flex-row flex-col gap-x-1"
+        class="flex justify-center items-center mx-auto text-white flex-row  gap-x-1  "
       >
         <span class="text-white text-lg">Restaurant A.i</span>&copy; 2023 Copyright
       </div>
     </div>
+    <BottomNav />
+
   </template>
   <script>
   import { ref, computed, onMounted, watch } from "vue";
   import { useRouter } from "vue-router";
   import bott from "../assets/img/bot.svg";
   import user_bot from "../assets/img/user.svg";
-  
+  import BottomNav from "../components/BottomNav";
   export default {
+ components: {
+      BottomNav,
+    },
     setup() {
       const prompt = ref("");
       const messages = ref([]);
