@@ -125,7 +125,7 @@
       <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
          <img
           class="h-96  md:m-24 w-full object-cover sm:h-72 md:h-96  lg:h-full lg:w-full"
-       src="https://cdn.pixabay.com/photo/2017/09/19/20/19/pizza-2766471_960_720.jpg"  
+       src="https://cdn.pixabay.com/photo/2018/03/28/20/32/food-3270461__340.jpg"  
           alt=""
         /> 
       </div>
