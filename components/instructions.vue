@@ -18,6 +18,7 @@
         </button>
       </ClientOnly>
     </div>
+    <Popup :successMessage="successMessage" :errorMessage="errorMessage" :successMsg="successMsg" :errMsg="errMsg" :close="close"/>
   <div class="max-w-5xl mx-auto flex md:flex-row flex-col flex-wrap my-2 gap-y-2">
     <div class="" v-for="instruction in all_instructions[0]">
       <article class="rounded-xl bg-slate-800 p-6 sm:ring-1 ring-indigo-600 sm:p-8">
@@ -66,7 +67,7 @@
                     d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
-                <p class="ml-1 text-xs font-medium">48:32 minutes</p>
+                <p class="ml-1 text-xs font-medium">{{  formatDate(instruction.created_at) }}</p>
               </div>
 
               <span class="hidden sm:block" aria-hidden="true">&middot;</span>
@@ -85,19 +86,40 @@
 </template>
 
 <script>
+import moment from 'moment'
+import Popup from './Popup.vue'
 export default {
+  components: {
+    Popup
+  },
   setup() {
     const client = useSupabaseClient();
     const all_instructions = ref([]);
+    let successMessage = ref('');
+    let successMsg = ref(false);
+    let errorMessage = ref('');
+    let errMsg=ref(false);
     let isFetching = ref(false);
+    const formatDate=(date)=> {
+      return moment(date).format('LLL')
+    }
+    const close=()=>{
+      successMsg.value=false;
+      errMsg.value=false;
+    }
     const get_all = async () => {
       isFetching.value = true;
       const { data, error } = await client.from("recipes").select("*");
       if (data) {
+        successMessage.value="successfully retrieved";
+        successMsg.value=true;
         all_instructions.value.push(data);
-        console.log(all_instructions.value);
       } else {
-        alert("error in retrieving");
+        errMsg.value=true;
+        errorMessage.value="Error in retrieving";
+        setTimeout(() => {
+            isFetching.value = false;
+          }, 3000);
       }
     };
     setTimeout(() => {
@@ -106,10 +128,18 @@ export default {
     get_all();
     return {
       get_all,
+      errMsg,
+       close,
       isFetching,
+      errMsg,
+      errorMessage,
+      successMsg,
+      successMessage,
+      formatDate,
       all_instructions,
     };
   },
+ 
 };
 </script>
 

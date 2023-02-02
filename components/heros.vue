@@ -94,7 +94,7 @@
               <h1
                 class="text-4xl  tracking-tight text-gray-900  sm:text-5xl md:text-6xl"
               >
-                <span class="block xl:inline  md:text-4xl text-2xl">Discover magic recipes <span class=" text-orange-600 text-5xl">.</span> </span>
+                <span class="block xl:inline  md:text-5xl text-4xl">Discover magic recipes <span class=" text-orange-600 text-5xl">.</span> </span>
                 <span class="block text-orange-600 xl:inline">
                <p class=""> Every meal every day!</p></span
                 >
@@ -124,7 +124,7 @@
      
       <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
          <img
-          class="h-96  md:m-24 w-full object-cover sm:h-72 md:h-96  lg:h-full lg:w-full"
+          class="h-96   w-full object-cover sm:h-72 md:h-96  lg:h-full lg:w-full rounded"
        src="https://cdn.pixabay.com/photo/2018/03/28/20/32/food-3270461__340.jpg"  
           alt=""
         /> 
@@ -142,7 +142,7 @@
   >
     <img
       src="https://cdn.pixabay.com/photo/2017/09/19/20/19/pizza-2766471_960_720.jpg"
-      class="object-cover object-right w-full h-auto lg:w-auto lg:h-full"
+      class="object-cover object-right w-full h-auto lg:w-auto lg:h-full rounded"
       alt=""
     />
   </div>

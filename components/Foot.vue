@@ -3,6 +3,7 @@
   <div>
    <Icon name="arcticons:recipe-keeper" class="h-20 w-20 rounded  text-orange-500"/>
     <p>Restaurant-A.i Ltd.<br/>Providing reliable recipes since 2023</p>
+    <p class=" text-orange-600">Developed by.<br/>Francis.-Evalyne.-Cosmas</p>
   </div> 
   <div>
     <span class="footer-title text-lg font-serif text-orange-700">Social</span> 

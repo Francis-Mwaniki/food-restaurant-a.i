@@ -33,7 +33,7 @@
         <a class="btn btn-ghost normal-case text-xl">Instructions(commands)</a>
       </div>
       <div class="navbar-end">
-        <button class="btn btn-ghost btn-circle">
+        <button class="btn btn-ghost btn-circle" @click="openSearch">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -50,12 +50,31 @@
           </svg>
         </button>
        
+       
       </div>
     </div>
+    <div class=" flex justify-center items-center mx-auto  my-2" v-show="searchStatus">
+         <input type="query" name="" @keydown.enter="search(q)"  class=" py-3 px-7 bg-slate-800 ring-1 ring-indigo-700 text-white rounded" id="">
+        </div>
   </div>
+  
 </template>
 
-<script setup></script>
+<script>
+export default {
+  props: ["openSearch",'search','query',"searchStatus"],
+    setup(props, context) {
+
+        const openSearch = () => {
+            context.emit("openSearch");
+        };
+       
+        return { openSearch, ...toRefs(props)};
+    },
+    
+};
+
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@100;300;400;500;700;800;900&display=swap");
